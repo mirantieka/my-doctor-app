@@ -1,3 +1,5 @@
-import logo from './logo.svg'
+import ILlogo from './logo.svg'
+import ILGetStarted from './bg.png'
+import ILNullPhoto from './user_photo_null.png'
 
-export {logo};
+export {ILlogo, ILGetStarted, ILNullPhoto};
