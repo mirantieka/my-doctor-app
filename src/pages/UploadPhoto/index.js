@@ -67,11 +67,13 @@ const styles = StyleSheet.create({
   },
   name: {
       fontSize: 24,
+      marginTop: 26,
       fontFamily: fonts.primary.semiBold,
       color: colors.text.primary
   },
   profesion: {
     fontSize: 18,
+    marginTop: 4,
     fontFamily: fonts.primary.normal,
     color: colors.text.secondary
 }
