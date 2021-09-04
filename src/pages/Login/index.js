@@ -4,7 +4,7 @@ import {ILlogo} from '../../assets';
 import {Button, Gap, Input, Link} from '../../components';
 import { colors, fonts } from '../../utils';
 
-export default function Login() {
+export default function Login({navigation}) {
   return (
     <View style={styles.page}>
       <ILlogo />
@@ -16,7 +16,7 @@ export default function Login() {
         <Gap height={10} />
         <Link title="Forgot My Password" size={12} />
         <Gap height={40} />
-        <Button title="Sign In" style={{marginTop: 40}} />
+        <Button title="Sign In" style={{marginTop: 40}} onPress={()=>navigation.replace('MainApp')} />
         <Gap height={30} />
         <Link title="Create New Account" size={16} textAlign="center" />
         <Gap height={24} />
