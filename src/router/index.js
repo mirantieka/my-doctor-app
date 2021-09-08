@@ -1,8 +1,9 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
-import {Doctor, GetStarted, Hospitals, Login, Messages, Register, Splash, UploadPhoto} from '../pages';
+import {ChooseDoctor, Doctor, GetStarted, Hospitals, Login, Messages, Register, Splash, UploadPhoto} from '../pages';
 import BottomNavigator from '../components/complex/BottomNavigator';
+import Chatting from '../pages/Chatting';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -26,6 +27,8 @@ const Router = () => {
       <Stack.Screen name="Login" component={Login} options={{headerShown: false}} />
       <Stack.Screen name="UploadPhoto" component={UploadPhoto} options={{headerShown: false}} />
       <Stack.Screen name="MainApp" component={MainApp} options={{headerShown: false}} />
+      <Stack.Screen name="ChooseDoctor" component={ChooseDoctor} options={{headerShown: false}} />
+      <Stack.Screen name="Chatting" component={Chatting} options={{headerShown: false}} />
     </Stack.Navigator>
   );
 };
