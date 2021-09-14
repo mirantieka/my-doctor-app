@@ -1,11 +1,14 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+import IsMe from './IsMe'
+import Others from './Others'
 
-export default function ChatItem() {
+export default function ChatItem({isMe}) {
+    if (isMe) {
+        return (<IsMe />)
+    }
     return (
-        <View>
-            <Text>Chat Item</Text>
-        </View>
+        <Others />
     )
 }
 

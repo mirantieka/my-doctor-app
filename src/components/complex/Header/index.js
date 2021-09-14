@@ -7,7 +7,7 @@ import HeaderProfile from './HeaderProfile'
 export default function Header({title, onPress, type, name, desc}) {
     if (type === "header-profile") {
         return (
-            <HeaderProfile name={name} desc={desc} />
+            <HeaderProfile name={name} desc={desc} onPress={onPress}/>
         )
     }
     return (

@@ -1,10 +1,10 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Gap} from '../..';
 import {DummyDoctor, DummyDoctor2, DummyDoctor3, IconStar} from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
-export default function DoctorRated({name, category}) {
+export default function DoctorRated({name, category, onPress}) {
     const Icon = () => {
         if (category === "Pediatrician") {
             return <Image source={DummyDoctor} style={styles.avatar} />    
@@ -18,7 +18,7 @@ export default function DoctorRated({name, category}) {
         return <Image source={DummyDoctor} style={styles.avatar} />
     }
   return (
-    <View style={styles.page}>
+    <TouchableOpacity style={styles.page} onPress={onPress}>
       <Icon />
       <View style={styles.profile}>
         <Text style={styles.name}>{name}</Text>
@@ -32,7 +32,7 @@ export default function DoctorRated({name, category}) {
         <IconStar />
         <IconStar />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 

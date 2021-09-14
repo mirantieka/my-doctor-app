@@ -4,10 +4,10 @@ import {Button, Gap} from '../..';
 import {DummyDoctor5} from '../../../assets';
 import { colors, fonts } from '../../../utils';
 
-export default function HeaderProfile({name, desc}) {
+export default function HeaderProfile({name, desc, onPress}) {
   return (
     <View style={styles.page}>
-      <Button type="icon-only" icon="back-light" />
+      <Button type="icon-only" icon="back-light" onPress={onPress} />
       <View style={styles.profile}>
         <Text style={styles.name}>{name}</Text>
         <Gap height={6} />

@@ -1,12 +1,26 @@
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { IconNext } from '../../../assets';
+import { IconAccount, IconHelp, IconLanguage, IconNext, IconRate } from '../../../assets';
 import { colors, fonts } from '../../../utils';
 
-export default function ListDoctor({pic, name, desc, type, onPress}) {
+export default function List({pic, name, desc, type, onPress, icon}) {
+  const Icon = () => {
+    if (icon === 'edit-profile') {
+      return <IconAccount />
+    }
+    if (icon === 'language') {
+      return <IconLanguage />
+    }
+    if (icon === 'rate') {
+      return <IconRate />
+    }
+    if (icon === 'help') {
+      return <IconHelp />
+    }
+  }
   return (
     <TouchableOpacity style={styles.page} onPress={onPress}>
-      <Image source={pic} style={styles.avatar} />
+      {icon ? <Icon /> : <Image source={pic} style={styles.avatar} />}
       <View style={styles.profile}>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.desc}>{desc}</Text>
@@ -20,7 +34,6 @@ const styles = StyleSheet.create({
   avatar: {
     width: 46,
     height: 46,
-    marginRight: 12
   },
   page: {
       flexDirection: 'row',
@@ -42,6 +55,7 @@ const styles = StyleSheet.create({
       color: colors.text.secondary
   },
   profile: {
-      flex: 1
+      flex: 1,
+      marginLeft: 16
   }
 });
