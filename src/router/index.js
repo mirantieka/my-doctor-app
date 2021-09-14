@@ -1,6 +1,7 @@
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
+import BottomNavigator from '../components/complex/BottomNavigator';
 import {
   ChooseDoctor,
   Doctor,
@@ -12,11 +13,9 @@ import {
   Messages,
   Register,
   Splash,
-  UploadPhoto,
+  UploadPhoto
 } from '../pages';
-import BottomNavigator from '../components/complex/BottomNavigator';
 import Chatting from '../pages/Chatting';
-import { UserProfile } from '../components';
 import Profile from '../pages/Profile';
 
 const Stack = createNativeStackNavigator();
@@ -46,7 +45,7 @@ const MainApp = () => {
 
 const Router = () => {
   return (
-    <Stack.Navigator initialRouteName="MainApp">
+    <Stack.Navigator initialRouteName="Splash">
       <Stack.Screen
         name="Splash"
         component={Splash}

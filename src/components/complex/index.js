@@ -23,5 +23,5 @@ export {
   ChatItem,
   InputChat,
   ProfileItem,
-  ProfileDetail
+  ProfileDetail,
 };

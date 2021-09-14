@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {ChatItem, Header, InputChat} from '../../components';
+import {ChatItem, Header, InputChat} from '../../components/complex';
 import {colors, fonts} from '../../utils';
 
 export default function Chatting({navigation}) {

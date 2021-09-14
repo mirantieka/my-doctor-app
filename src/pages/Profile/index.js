@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { DummyUser } from '../../assets'
 import { Gap, Header, List, ProfileItem } from '../../components'
 import { colors } from '../../utils'

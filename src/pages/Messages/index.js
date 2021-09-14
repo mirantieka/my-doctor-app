@@ -4,7 +4,7 @@ import {DummyDoctor4, DummyDoctor5, DummyDoctor6} from '../../assets';
 import List from '../../components/complex/List';
 import {colors, fonts} from '../../utils';
 
-export default function Messages() {
+export default function Messages({navigation}) {
   const [doctors, setDoctors] = useState([
     {
       id: 1,
@@ -29,10 +29,16 @@ export default function Messages() {
     <View style={styles.page}>
       <View style={styles.container}>
         <Text style={styles.title}>Messages</Text>
-        { doctors.map(doctor =>{
-            return (
-                <List key={doctor.id} pic={doctor.pic} name={doctor.name} desc={doctor.desc} />
-            )
+        {doctors.map(doctor => {
+          return (
+            <List
+              key={doctor.id}
+              pic={doctor.pic}
+              name={doctor.name}
+              desc={doctor.desc}
+              onPress={()=>navigation.navigate('Chatting')}
+            />
+          );
         })}
       </View>
     </View>

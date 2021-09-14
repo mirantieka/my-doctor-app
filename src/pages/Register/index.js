@@ -1,6 +1,6 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {Button, Gap, Header, Input} from '../../components';
+import { StyleSheet, View } from 'react-native';
+import { Button, Gap, Header, Input } from '../../components';
 import { colors } from '../../utils';
 
 export default function Register({navigation}) {

@@ -1,12 +1,12 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { fonts } from '../../../utils'
 
-export default function Link({title, size, textAlign}) {
+export default function Link({title, size, textAlign, onPress}) {
     return (
-        <View>
+        <TouchableOpacity onPress={onPress}>
             <Text style={styles.link(size, textAlign)}>{title}</Text>
-        </View>
+        </TouchableOpacity>
     )
 }
 

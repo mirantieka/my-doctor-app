@@ -15,8 +15,8 @@ export default function BtnIconSend({disable}) {
 const styles = StyleSheet.create({
     container: (disable) => (
         {
-            paddingLeft: 8.09,
-            paddingTop: 3.09,
+            paddingLeft: 9.09,
+            paddingTop: 5.09,
             backgroundColor: disable ? colors.input : colors.tertiary,
             width: 45,
             borderRadius: 10

@@ -1,14 +1,14 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { DummyDoctor } from '../../assets';
 import {
   Button,
   Gap,
   Header,
-  ProfileDetail,
-  ProfileItem,
-} from '../../components';
-import {colors} from '../../utils';
+  ProfileItem
+} from '../../components/';
+import { ProfileDetail } from '../../components';
+import { colors } from '../../utils';
 
 export default function DoctorProfile({navigation}) {
   return (

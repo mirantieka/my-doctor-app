@@ -1,8 +1,8 @@
 import React from 'react';
-import {StyleSheet, Text, View, ScrollView} from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { DummyUser } from '../../assets';
-import {Button, Gap, Header, Input, ProfileItem} from '../../components';
-import {colors} from '../../utils';
+import { Button, Gap, Header, Input, ProfileItem } from '../../components';
+import { colors } from '../../utils';
 
 export default function EditProfile({navigation}) {
   return (
@@ -20,7 +20,7 @@ export default function EditProfile({navigation}) {
           <Gap height={24} />
           <Input title="Password" />
           <Gap height={40} />
-          <Button title="Save Profile" />
+          <Button title="Save Profile" onPress={()=>navigation.goBack()} />
         </View>
       </ScrollView>
     </View>

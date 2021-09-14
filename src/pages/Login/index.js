@@ -18,7 +18,7 @@ export default function Login({navigation}) {
         <Gap height={40} />
         <Button title="Sign In" style={{marginTop: 40}} onPress={()=>navigation.replace('MainApp')} />
         <Gap height={30} />
-        <Link title="Create New Account" size={16} textAlign="center" />
+        <Link title="Create New Account" size={16} textAlign="center" onPress={()=>navigation.navigate('Register')} />
         <Gap height={24} />
       </View>
     </View>
