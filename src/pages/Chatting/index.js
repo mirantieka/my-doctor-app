@@ -3,19 +3,20 @@ import {StyleSheet, Text, View} from 'react-native';
 import {ChatItem, Header, InputChat} from '../../components';
 import {colors, fonts} from '../../utils';
 
-export default function Chatting() {
+export default function Chatting({navigation}) {
   return (
     <View style={styles.page}>
       <Header
         name="Nairobi Putri Hayza"
         desc="Dokter Anak"
         type="header-profile"
+        onPress={()=>navigation.goBack()}
       />
       <View style={styles.container}>
         <Text style={styles.chatDate}>Senin, 20 Maret 2021</Text>
+        <ChatItem isMe />
         <ChatItem />
-        <ChatItem />
-        <ChatItem />
+        <ChatItem isMe />
       </View>
       <InputChat />
     </View>

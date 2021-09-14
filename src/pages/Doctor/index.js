@@ -17,7 +17,7 @@ export default function Doctor({navigation}) {
         <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.wrapperSection}>
           <Gap height={30} />
-          <UserProfile />
+          <UserProfile onPress={()=>navigation.navigate('Profile')} />
           <Gap height={30} />
           <Text style={styles.titleOne}>
             Mau konsultasi dengan siapa hari ini?
@@ -42,7 +42,7 @@ export default function Doctor({navigation}) {
           <View style={styles.wrapperSection}>
             {JSONRatedDoctor.data.map(item =>{
               return (
-                <DoctorRated key={item.id} name={item.name} category={item.category} />
+                <DoctorRated key={item.id} name={item.name} category={item.category} onPress={()=>navigation.navigate('DoctorProfile')} />
               )
             })}
             <Gap height={14} />
