@@ -1,26 +1,42 @@
-import React from 'react'
-import { StyleSheet, Text, TextInput, View } from 'react-native'
-import { fonts } from '../../../utils'
+import React, {useState} from 'react';
+import {StyleSheet, Text, TextInput, View} from 'react-native';
+import {colors, fonts} from '../../../utils';
 
-export default function Input({title}) {
-    return (
-        <View>
-            <Text style={styles.text}>{title}</Text>
-            <TextInput style={styles.input} />
-        </View>
-    )
+export default function Input({title, value, onChangeText, secureTextEntry}) {
+  const [border, setBorder] = useState(colors.border);
+
+  const onFocusForm = () => {
+    setBorder(colors.tertiary);
+  };
+
+  const onBlurForm = () => {
+    setBorder(colors.border);
+  };
+  return (
+    <View>
+      <Text style={styles.text}>{title}</Text>
+      <TextInput
+        onFocus={onFocusForm}
+        onBlur={onBlurForm}
+        style={styles.input(border)}
+        value={value}
+        onChangeText={onChangeText}
+        secureTextEntry={secureTextEntry}
+      />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-    input: {
-        borderWidth: 1,
-        borderRadius: 10,
-        borderColor: '#E9E9E9',
-        marginTop: 6
-    },
-    text: {
-        color: '#7D8797',
-        fontFamily: fonts.primary.normal,
-        fontSize: 16
-    }
-})
+  input: border => ({
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: border,
+    marginTop: 6,
+  }),
+  text: {
+    color: '#7D8797',
+    fontFamily: fonts.primary.normal,
+    fontSize: 16,
+  },
+});
