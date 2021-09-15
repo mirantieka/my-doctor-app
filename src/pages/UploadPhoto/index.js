@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   btnAddPhoto: {
     position: 'absolute',
     bottom: 8,
-    right: 6,
+    right: 0,
   },
   container: {
     paddingHorizontal: 40,
