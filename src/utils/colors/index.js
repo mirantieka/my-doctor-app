@@ -5,6 +5,7 @@ const mainColors= {
     grey: '#7D8797',
     white: '#ffffff',
     black: '#000000',
+    black2: 'rgba(0, 0, 0, 0.5)',
     green2: '#EDFCFD',
     grey2: '#EEEEEE',
     grey3: '#8092AF',
@@ -22,6 +23,7 @@ export const colors= {
     black: mainColors.black,
     border: mainColors.grey2,
     input: mainColors.grey4,
+    loading: mainColors.black2,
 
     text: {
         primary: mainColors.darkBlue,
