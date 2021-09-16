@@ -11,7 +11,8 @@ const mainColors= {
     grey3: '#8092AF',
     grey4: '#EDEEF0',
     grey5: '#B1B7C2',
-    blue: '#0066CB'
+    blue: '#0066CB',
+    red: '#E06379'
 }
 
 export const colors= {
@@ -24,6 +25,7 @@ export const colors= {
     border: mainColors.grey2,
     input: mainColors.grey4,
     loading: mainColors.black2,
+    error: mainColors.red,
 
     text: {
         primary: mainColors.darkBlue,
@@ -37,5 +39,10 @@ export const colors= {
     card: {
         primary: mainColors.green2,
         secondary: mainColors.green
+    },
+
+    disabe: {
+        background: mainColors.grey4,
+        text: mainColors.grey5
     }
 }
