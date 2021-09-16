@@ -1,40 +1,58 @@
 import React, {useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
+import {showMessage} from 'react-native-flash-message';
 import {Button, Gap, Header, Input, Loading} from '../../components';
 import {Firebase} from '../../config';
 import {colors, useForm} from '../../utils';
+import {getData, storeData} from '../../utils/localStorage';
 
 export default function Register({navigation}) {
-  // const [fullName, setFullName] = useState('');
-  // const [profession, setProfession] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-
   const [form, setForm] = useForm({
     fullName: '',
     profession: '',
     email: '',
-    password: '',
   });
 
   const [loading, setLoading] = useState(false);
 
   const onContinue = () => {
     console.log(form);
+    
     setLoading(true);
+
     Firebase.auth()
       .createUserWithEmailAndPassword(form.email, form.password)
       .then(success => {
         setLoading(false);
         setForm('reset');
+
+        const data = {
+          fullName: form.fullName,
+          profession: form.profession,
+          email: form.email,
+          uid: success.user.uid
+        };
+
+        Firebase.database()
+          .ref('users/' + success.user.uid + '/')
+          .set(data);
+
+        storeData('user', data);
+        navigation.navigate('UploadPhoto', data);
+
         console.log('Register Success: ', success);
       })
       .catch(error => {
         setLoading(false);
         const errorMessage = error.message;
+        showMessage({
+          message: errorMessage,
+          type: 'default',
+          backgroundColor: colors.error,
+          color: colors.white,
+        });
         console.log('Register Error: ', errorMessage);
       });
-    () => navigation.navigate('UploadPhoto');
   };
   return (
     <View style={styles.page}>
