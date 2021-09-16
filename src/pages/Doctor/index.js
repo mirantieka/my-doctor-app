@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {
   DoctorCategory,
@@ -9,8 +9,10 @@ import {
 } from '../../components';
 import {colors, fonts} from '../../utils';
 import { DummyNews, DummyNews2, DummyNews3, JSONCategoryDoctor, JSONRatedDoctor } from '../../assets';
+import { getData } from '../../utils/localStorage';
 
 export default function Doctor({navigation}) {
+  
   return (
     <View style={styles.page}>
       <View style={styles.container}>
