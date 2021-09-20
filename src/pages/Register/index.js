@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
-import {showMessage} from 'react-native-flash-message';
 import {Button, Gap, Header, Input, Loading} from '../../components';
 import {Firebase} from '../../config';
-import {colors, useForm} from '../../utils';
-import {getData, storeData} from '../../utils/localStorage';
+import {colors, showError, useForm} from '../../utils';
+import {storeData} from '../../utils/localStorage';
 
 export default function Register({navigation}) {
   const [form, setForm] = useForm({
@@ -17,7 +16,7 @@ export default function Register({navigation}) {
 
   const onContinue = () => {
     console.log(form);
-    
+
     setLoading(true);
 
     Firebase.auth()
@@ -30,7 +29,7 @@ export default function Register({navigation}) {
           fullName: form.fullName,
           profession: form.profession,
           email: form.email,
-          uid: success.user.uid
+          uid: success.user.uid,
         };
 
         Firebase.database()
@@ -45,12 +44,7 @@ export default function Register({navigation}) {
       .catch(error => {
         setLoading(false);
         const errorMessage = error.message;
-        showMessage({
-          message: errorMessage,
-          type: 'default',
-          backgroundColor: colors.error,
-          color: colors.white,
-        });
+        showError(errorMessage);
         console.log('Register Error: ', errorMessage);
       });
   };

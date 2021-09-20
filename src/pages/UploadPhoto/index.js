@@ -1,16 +1,15 @@
 import React, {useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {showMessage} from 'react-native-flash-message';
+import base64 from 'react-native-image-base64';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {IconAddPhoto, IconRemovePhoto, ILNullPhoto} from '../../assets';
 import {Button, Gap, Header, Link} from '../../components';
 import {Firebase} from '../../config';
-import {colors, fonts} from '../../utils';
+import {colors, fonts, showError} from '../../utils';
 import {storeData} from '../../utils/localStorage';
-import base64 from 'react-native-image-base64';
 
 export default function UploadPhoto({navigation, route}) {
-  const{fullName, profession, uid} = route.params;
+  const {fullName, profession, uid} = route.params;
 
   const [hasPhoto, setHasPhoto] = useState(false);
   const [avatar, setAvatar] = useState(ILNullPhoto);
@@ -29,27 +28,19 @@ export default function UploadPhoto({navigation, route}) {
     };
     launchImageLibrary(options, response => {
       if (response.didCancel) {
-        showMessage({
-          message: 'Gagal memuat image',
-          type: 'default',
-          backgroundColor: colors.error,
-          color: colors.white,
-        });
+        showError('Gagal memuat image');
       } else {
         const source = {uri: response.assets[0].uri};
 
-        base64
-          .getBase64String(response.assets[0].uri)
-          .then(res=>{
-            console.log('res: ', res)
-            setPhotoDB(`data: ${response.assets[0].type};base64, ${res}`);
-          });
-        
+        base64.getBase64String(response.assets[0].uri).then(res => {
+          console.log('res: ', res);
+          setPhotoDB(`data: ${response.assets[0].type};base64, ${res}`);
+        });
+
         setAvatar(source);
         setHasPhoto(true);
 
         console.log('response: ', response);
-        
       }
     });
   };

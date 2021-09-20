@@ -1,14 +1,25 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {ILlogo} from '../../assets/illustration';
-import { colors } from '../../utils';
+import {Firebase} from '../../config';
+import {colors} from '../../utils';
 
 export default function Splash({navigation}) {
   useEffect(() => {
-    setTimeout(() => {
-      navigation.replace('GetStarted');
-    }, 3000);
-  }, []);
+    const unsubscribe = Firebase.auth().onAuthStateChanged(user => {
+      setTimeout(() => {
+        if (user) {
+          //user masih login
+          console.log('status: ', user);
+          navigation.replace('MainApp');
+        } else {
+          //user sudah logout
+          navigation.replace('GetStarted');
+        }
+      }, 3000);
+    });
+    return () => unsubscribe();
+  }, [navigation]);
 
   return (
     <View style={styles.container}>

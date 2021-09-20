@@ -1,27 +1,30 @@
-import React, {useState} from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import {showMessage} from 'react-native-flash-message';
-import {ILlogo} from '../../assets';
-import {Button, Gap, Input, Link, Loading} from '../../components';
-import {Firebase} from '../../config';
-import {colors, fonts, useForm} from '../../utils';
+import React from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { ILlogo } from '../../assets';
+import { Button, Gap, Input, Link, Loading } from '../../components';
+import { Firebase } from '../../config';
+import { colors, fonts, showError, useForm } from '../../utils';
 import { storeData } from '../../utils/localStorage';
 
 export default function Login({navigation}) {
+  const stateGlobal = useSelector((state)=> state)
+  const dispatch = useDispatch()
+
   const [form, setForm] = useForm({
     email: '',
     password: '',
   });
 
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   const onLogin = () => {
     console.log(form);
-    setLoading(true);
+    dispatch({type: 'SET_LOADING', value: true});
     Firebase.auth()
       .signInWithEmailAndPassword(form.email, form.password)
       .then(res => {
-        setLoading(false);
+        dispatch({type: 'SET_LOADING', value: false});
         console.log('success: ', res);
         Firebase.database()
         .ref(`users/${res.user.uid}/`)
@@ -34,15 +37,10 @@ export default function Login({navigation}) {
         });
       })
       .catch(err => {
-        setLoading(false);
+        dispatch({type: 'SET_LOADING', value: false});
         const errorMessage = err.message;
         console.log('error: ', errorMessage);
-        showMessage({
-          message: errorMessage,
-          type: 'default',
-          backgroundColor: colors.error,
-          color: colors.white,
-        });
+        showError(errorMessage)
       });
     
   };
@@ -53,7 +51,7 @@ export default function Login({navigation}) {
         <ScrollView showsVerticalScrollIndicator={false}>
           <Gap height={40} />
           <ILlogo />
-          <Text style={styles.title}>Masuk dan mulai berkonsultasi</Text>
+          <Text style={styles.title}>Konsultasi dengan siapa hari ini?</Text>
           <View style={{marginTop: 40}}>
             <Input
               title="Email Address"
@@ -82,7 +80,7 @@ export default function Login({navigation}) {
           </View>
         </ScrollView>
       </View>
-      {loading && <Loading />}
+      {stateGlobal.loading && <Loading />}
     </>
   );
 }
