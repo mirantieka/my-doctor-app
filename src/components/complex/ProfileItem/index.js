@@ -1,15 +1,23 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
-import { IconRemovePhoto } from '../../../assets';
-import { colors, fonts } from '../../../utils';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {IconAddPhoto, IconRemovePhoto} from '../../../assets';
+import {colors, fonts} from '../../../utils';
 
-export default function ProfileItem({name, desc, isRemoved, image}) {
+export default function ProfileItem({name, desc, isRemoved, image, onPress}) {
   return (
     <View style={styles.page}>
-      <View style={styles.imageWrapper}>
-        <Image source={image} style={styles.image} />
-        {isRemoved && <IconRemovePhoto style={styles.icon} />}
-      </View>
+      {!isRemoved && (
+        <View style={styles.imageWrapper}>
+          <Image source={image} style={styles.image} />
+          {/* <IconAddPhoto style={styles.icon} /> */}
+        </View>
+      )}
+      {isRemoved && (
+        <TouchableOpacity style={styles.imageWrapper} onPress={onPress}>
+          <Image source={image} style={styles.image} />
+          <IconRemovePhoto style={styles.icon} />
+        </TouchableOpacity>
+      )}
       {name && (
         <View>
           <Text style={styles.name}>{name}</Text>
@@ -24,6 +32,7 @@ const styles = StyleSheet.create({
   image: {
     width: 110,
     height: 110,
+    borderRadius: 110 / 2,
   },
   imageWrapper: {
     borderWidth: 1,
@@ -44,12 +53,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: colors.text.primary,
     textAlign: 'center',
+    textTransform: 'capitalize',
   },
   job: {
     fontFamily: fonts.primary.normal,
     fontSize: 16,
     color: colors.text.secondary,
     textAlign: 'center',
+    textTransform: 'capitalize',
   },
   icon: {
     position: 'absolute',
