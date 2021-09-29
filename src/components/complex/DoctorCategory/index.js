@@ -1,6 +1,6 @@
 import React from 'react'
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { ILDokterAnak, ILDokterCtg, ILDokterObat, ILDokterUmum, ILPsikiater } from '../../../assets'
+import { Image, StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { ILDokterAnak, ILDokterObat, ILDokterUmum, ILPsikiater } from '../../../assets'
 import { colors, fonts } from '../../../utils'
 
 export default function DoctorCategory({category, onPress}) {
