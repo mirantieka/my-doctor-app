@@ -61,13 +61,40 @@ export default function Chatting({navigation, route}) {
 
     const chatID = `${user.uid}_${doctor.data.uid}`;
 
+    //url for saving chat content
     const urlFirebase = `chatting/${chatID}/allChat/${setChatDate(today)}`;
+
+    //url for saving history chat content
+    const urlMessageForUser = `messages/${user.uid}/${chatID}`;
+    const urlMessageForDoctor = `messages/${doctor.data.uid}/${chatID}`;
+
+    //history chat data that will be saved in firebase
+    const dataHistoryChatForUser = {
+      lastContentChat: chatContent,
+      lastChatDate: today.getTime(),
+      uidPartner: doctor.data.uid,
+    };
+    const dataHistoryChatForDoctor = {
+      lastContentChat: chatContent,
+      lastChatDate: today.getTime(),
+      uidPartner: user.uid,
+    };
 
     Firebase.database()
       .ref(urlFirebase)
       .push(data)
       .then(() => {
         setChatContent('');
+
+        //set history for user
+        Firebase.database()
+          .ref(urlMessageForUser)
+          .set(dataHistoryChatForUser);
+
+        //set history for doctor
+        Firebase.database()
+          .ref(urlMessageForDoctor)
+          .set(dataHistoryChatForDoctor);
       })
       .catch(err => {
         showError(err.message);
@@ -90,15 +117,16 @@ export default function Chatting({navigation, route}) {
               <View key={chat.id}>
                 <Text style={styles.chatDate}>{chat.id}</Text>
                 {chat.data.map(itemChat => {
-                  const isMe = itemChat.data.sentBy === user.uid
-                  return(
-                    <ChatItem 
-                    key={itemChat.id}
-                    isMe={isMe}
-                    text={itemChat.data.chatContent}
-                    time={itemChat.data.chatTime}
-                    avatar={isMe ? null : {uri: doctor.data.photo}} />
-                  )
+                  const isMe = itemChat.data.sentBy === user.uid;
+                  return (
+                    <ChatItem
+                      key={itemChat.id}
+                      isMe={isMe}
+                      text={itemChat.data.chatContent}
+                      time={itemChat.data.chatTime}
+                      avatar={isMe ? null : {uri: doctor.data.photo}}
+                    />
+                  );
                 })}
               </View>
             );
