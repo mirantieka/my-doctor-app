@@ -3,13 +3,13 @@ import { Image, StyleSheet, Text, View } from 'react-native'
 import { Gap } from '../..'
 import { colors, fonts } from '../../../utils'
 
-export default function NewsItem({title, pic}) {
+export default function NewsItem({title, pic, date}) {
     return (
         <View style={styles.page}>
             <View style={styles.container}>
             <Text style={styles.title}>{title}</Text>
             <Gap height={4} />
-            <Text style={styles.time}>Today</Text>
+            <Text style={styles.time}>{date}</Text>
             </View>
             <Image source={pic} style={styles.picture} />
         </View>
