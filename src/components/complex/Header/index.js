@@ -4,10 +4,10 @@ import { colors, fonts } from '../../../utils'
 import { Button, Gap } from '../../small'
 import HeaderProfile from './HeaderProfile'
 
-export default function Header({title, onPress, type, name, desc}) {
+export default function Header({title, onPress, type, name, desc, avatar}) {
     if (type === "header-profile") {
         return (
-            <HeaderProfile name={name} desc={desc} onPress={onPress}/>
+            <HeaderProfile avatar={avatar} name={name} desc={desc} onPress={onPress}/>
         )
     }
     return (
@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontFamily: fonts.primary[600],
         textAlign: 'center',
-        color: type === "back-light" ? colors.white : colors.text.primary
+        color: type === "back-light" ? colors.white : colors.text.primary,
+        textTransform: 'capitalize'
     })
 })

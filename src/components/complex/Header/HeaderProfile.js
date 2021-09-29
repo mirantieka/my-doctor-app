@@ -4,7 +4,7 @@ import {Button, Gap} from '../..';
 import {DummyDoctor5} from '../../../assets';
 import { colors, fonts } from '../../../utils';
 
-export default function HeaderProfile({name, desc, onPress}) {
+export default function HeaderProfile({name, desc, onPress, avatar}) {
   return (
     <View style={styles.page}>
       <Button type="icon-only" icon="back-light" onPress={onPress} />
@@ -13,7 +13,7 @@ export default function HeaderProfile({name, desc, onPress}) {
         <Gap height={6} />
         <Text style={styles.desc}>{desc}</Text>
       </View>
-      <Image source={DummyDoctor5} style={styles.image} />
+      <Image source={avatar} style={styles.image} />
     </View>
   );
 }
@@ -33,19 +33,22 @@ const styles = StyleSheet.create({
       textAlign: 'center',
       color: colors.white,
       fontFamily: fonts.primary.semiBold,
-      fontSize: 20
+      fontSize: 20,
+      textTransform: 'capitalize'
   },
   desc: {
       textAlign: 'center',
       color: colors.text.subTitle,
       fontFamily: fonts.primary.normal,
-      fontSize: 14
+      fontSize: 14,
+      textTransform: 'capitalize'
   },
   profile: {
       flex: 1,
   },
   image: {
       width: 46,
-      height: 46
+      height: 46,
+      borderRadius: 46/2
   }
 });
