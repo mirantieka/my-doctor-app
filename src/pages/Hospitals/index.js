@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Dimensions,
   ImageBackground,
@@ -8,11 +8,26 @@ import {
 } from 'react-native';
 import {DummyHospital1, DummyHospital2, DummyHospital3, ILHospitalBackground} from '../../assets';
 import ListHospital from '../../components/complex/ListHospital';
-import {colors, fonts} from '../../utils';
+import { Firebase } from '../../config';
+import {colors, fonts, showError} from '../../utils';
 
 const width = Dimensions.get('screen').width;
 
 export default function Hospitals() {
+
+  const [hospital, setHospital] = useState([])
+
+  useEffect(() => {
+    Firebase.database().ref('hospital/').once('value').then(res=>{
+      console.log('hospital: ', res.val());
+      if (res.val()) {
+        setHospital(res.val())
+      }
+    }).catch(err => {
+      showError(err.message)
+    })
+    
+  }, [])
   return (
     <View style={styles.page}>
       <ImageBackground source={ILHospitalBackground} style={styles.background}>
@@ -20,9 +35,16 @@ export default function Hospitals() {
         <Text style={styles.subtitle}>3 Nearby</Text>
       </ImageBackground>
       <View style={styles.container}>
-        <ListHospital pic={DummyHospital1} type="Rumah Sakit" name="Citra Bunga Merdeka" address="Jln. Surya Sejahtera 20" />
-        <ListHospital pic={DummyHospital2} type="Rumah Sakit Anak" name="Happy Family & Kids" address="Jln. Surya Sejahtera 20" />
-        <ListHospital pic={DummyHospital3} type="Rumah Sakit Jiwa" name="Tingkatan Paling Atas" address="Jln. Surya Sejahtera 20" />
+        {hospital.map(item => {
+          return(
+            <ListHospital 
+            key={item.id}
+            pic={item.image} 
+            type={item.type} 
+            name={item.name} 
+            address={item.address} />
+          )
+        })}
       </View>
     </View>
   );
