@@ -1,8 +1,9 @@
 export const getChatTime = (date) => {
     const hour = date.getHours();
     const minute = date.getMinutes();
+    const minutes = minute < 10 ? '0'+minute : minute;
 
-    return `${hour}:${minute} ${hour >= 12 ? 'PM' : 'AM'}`
+    return `${hour}:${minutes} ${hour >= 12 ? 'PM' : 'AM'}`
 }
 
 export const setChatDate = (oldDate) => {
