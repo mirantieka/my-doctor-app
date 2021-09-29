@@ -4,22 +4,11 @@ import {Gap} from '../..';
 import {DummyDoctor, DummyDoctor2, DummyDoctor3, IconStar} from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
-export default function DoctorRated({name, category, onPress}) {
-    const Icon = () => {
-        if (category === "Pediatrician") {
-            return <Image source={DummyDoctor} style={styles.avatar} />    
-        }
-        if (category === "Dentist") {
-            return <Image source={DummyDoctor2} style={styles.avatar} />
-        }
-        if (category === "Podiatrist") {
-            return <Image source={DummyDoctor3} style={styles.avatar} />
-        }
-        return <Image source={DummyDoctor} style={styles.avatar} />
-    }
+export default function DoctorRated({name, category, onPress, avatar}) {
+    
   return (
     <TouchableOpacity style={styles.page} onPress={onPress}>
-      <Icon />
+      <Image source={avatar} style={styles.avatar} />
       <View style={styles.profile}>
         <Text style={styles.name}>{name}</Text>
         <Gap height={2} />
@@ -45,6 +34,7 @@ const styles = StyleSheet.create({
   avatar: {
     width: 50,
     height: 50,
+    borderRadius: 50/2
   },
   rate: {
     flexDirection: 'row',
@@ -62,5 +52,6 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primary.normal,
     fontSize: 12,
     color: colors.text.secondary,
+    textTransform: 'capitalize'
   },
 });
