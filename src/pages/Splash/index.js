@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {ILlogo} from '../../assets/illustration';
 import {Firebase} from '../../config';
-import {colors} from '../../utils';
+import {colors, fonts} from '../../utils';
 
 export default function Splash({navigation}) {
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function Splash({navigation}) {
   return (
     <View style={styles.container}>
       <ILlogo />
-      <Text style={styles.app_name}>MyDoctor</Text>
+      <Text style={styles.app_name}>My Doctor</Text>
     </View>
   );
 }
@@ -32,9 +32,9 @@ export default function Splash({navigation}) {
 const styles = StyleSheet.create({
   app_name: {
     fontSize: 20,
-    fontWeight: '600',
     color: colors.text.primary,
     marginTop: 20,
+    fontFamily: fonts.primary.semiBold
   },
   container: {
     alignItems: 'center',
