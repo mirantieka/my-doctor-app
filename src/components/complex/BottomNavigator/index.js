@@ -1,13 +1,13 @@
-import React from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { TabItem } from '../../small';
-import { colors } from '../../../utils';
+import React from 'react';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {TabItem} from '../../small';
+import {colors} from '../../../utils';
 
-export default function BottomNavigator({ state, descriptors, navigation }) {
-    return (
-        <View  style={styles.container}>
+export default function BottomNavigator({state, descriptors, navigation}) {
+  return (
+    <View style={styles.container}>
       {state.routes.map((route, index) => {
-        const { options } = descriptors[route.key];
+        const {options} = descriptors[route.key];
         const label =
           options.tabBarLabel !== undefined
             ? options.tabBarLabel
@@ -26,7 +26,7 @@ export default function BottomNavigator({ state, descriptors, navigation }) {
 
           if (!isFocused && !event.defaultPrevented) {
             // The `merge: true` option makes sure that the params inside the tab screen are preserved
-            navigation.navigate({ name: route.name, merge: true });
+            navigation.navigate({name: route.name, merge: true});
           }
         };
 
@@ -38,21 +38,27 @@ export default function BottomNavigator({ state, descriptors, navigation }) {
         };
 
         return (
-            <TouchableOpacity>
-                <TabItem key={index} title={label} onPress={onPress} onLongPress={onLongPress} active={isFocused} />
-            </TouchableOpacity>
+          <TouchableOpacity>
+            <TabItem
+              key={index}
+              title={label}
+              onPress={onPress}
+              onLongPress={onLongPress}
+              active={isFocused}
+            />
+          </TouchableOpacity>
         );
       })}
     </View>
-    )
+  );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: colors.secondary,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingVertical: 12,
-        paddingHorizontal: 53,
-    }
-})
+  container: {
+    backgroundColor: colors.secondary,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 12,
+    paddingHorizontal: 53,
+  },
+});
