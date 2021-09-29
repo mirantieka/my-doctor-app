@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
   avatar: {
     width: 46,
     height: 46,
+    borderRadius: 46/2
   },
   page: {
       flexDirection: 'row',
@@ -52,7 +53,8 @@ const styles = StyleSheet.create({
   desc: {
       fontFamily: fonts.primary.light,
       fontSize: 12,
-      color: colors.text.secondary
+      color: colors.text.secondary,
+      textTransform: 'capitalize'
   },
   profile: {
       flex: 1,
