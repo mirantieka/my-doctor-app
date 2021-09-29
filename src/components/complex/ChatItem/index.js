@@ -3,12 +3,12 @@ import { StyleSheet, Text, View } from 'react-native'
 import IsMe from './IsMe'
 import Others from './Others'
 
-export default function ChatItem({isMe}) {
+export default function ChatItem({isMe, text, time, avatar}) {
     if (isMe) {
-        return (<IsMe />)
+        return (<IsMe text={text} time={time} />)
     }
     return (
-        <Others />
+        <Others avatar={avatar} text={text} time={time} />
     )
 }
 
